@@ -17,31 +17,230 @@
     </header>
 
     <main>
-        <h2 class="text-center mb-5" style="max-width:600px; margin: auto">deck.gl - WebGL библиотека за визуално изследване
+        <h2 class="text-center mb-5" style="max-width:600px; margin: auto">deck.gl - WebGL библиотека за визуално
+            изследване
             и анализ на големи данни</h1>
 
-        <div class="main-container">
-            <div class="sidebar">
-                <ul>
-                    <li>lasdfasdf</li>
-                    <li>lorem</li>
-                    <li>loremasdlfkjalskdfjlka</li>
-                    <li>asldkfjalksdjlfkjaslkd</li>
-                    <li>aslkdjflaksjdlfk</li>
-                </ul>
+            <div class="main-container">
+                <div class="sidebar">
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-link text-left pt-0" href="#overview">Въведение</a>
+                        <a class="btn btn-link text-left pt-0" href="#main-concepts">Основни Концепции</a>
+                        <a class="btn btn-link text-left pt-0" href="#usage">Използване</a>
+                        <a class="btn btn-link text-left pt-0" href="#performance">Производителност</a>
+                        <a class="btn btn-link text-left pt-0" href="#examples">Примери</a>
+                        <a class="btn btn-link text-left pt-0" href="#references">Източници</a>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <h4>
+                        <a id="overview" href="#overview">#</a>
+                        Въведение
+                    </h4>
+                    <hr>
+                    <p>
+                        deck.gl е проектиран да направи визуализацията на големи масиви от данни проста. Тя позволява на
+                        потребителите бързо да получават впечатляващи визуални резултати с ограничено усилие чрез
+                        копозиране на визуални слоеве от данни, като същевременно предлагат цялостна архитектура
+                        (интерфейс) за проектиране на комплексни, WebGL базирани визуализации чрез прилагане на
+                        преизползваеми JavaScript слоеве.
+                    </p>
+                    <p>
+                        Основната идея за използване на deck.gl е да се зареди стек от визуални наслагвания, обикновено
+                        (но не винаги) върху карта.
+                    </p>
+                    <p>
+                        За да заработи тази проста концепция, deck.gl се справя с редица предизвикателства:
+                        <ul style="margin-left:20px">
+                            <li>Обработване на големи набори от данни и актуализации за по-добра производителност</li>
+                            <li>Интерактивна обработка на събития като например Picking</li>
+                            <li>Картографски проекции и интеграция с основната карта</li>
+                            <li>Каталог с доказани, добре изтествани слоеве</li>
+                            <li>Лесно е да създавате нови слоеве или да персонализирате съществуващите слоеве</li>
+                        </ul>
+                    </p>
+                    <h4>
+                        <a id="main-concepts" href="#main-concepts">#</a>
+                        Онсновни концепции
+                    </h4>
+                    <hr>
+                    <p>
+                        <h5>Вияуализация на слоеве - основен подход за визуализация на данните</h5>
+                        deck.gl позволява да се конструират сложни визуализации чрез съставяне на слоеве от данни,
+                        предназначени за персонализирана визуализация, която да отговаря на конкретните изисквания.
+                        Композирането на слой позволява може лесно да бъде преизползван и споделян за направата на нови
+                        визуализации.
+                        Богатият каталог от предефинирани, доказани и добре изтествани слоеве покрива голяма час от
+                        бизнес сценарии.
+                    </p>
+                    <p>
+                        <h5>Високоточни изчисления извършвани от видеокартата</h5>
+                        Чрез извършването на 64-битови изчисления с плаваща запетая с помощта на графичния процесор,
+                        deck.gl успява да визуализира данни
+                        с изключителна точност, производителност и бързина.
+                    </p>
+                    <p>
+                        <h5>Интеграция с React и Mapbox GL</h5>
+                        deck.gl има най-висока производителност при използването му с React, поддържайки ефективен WebGL
+                        рендеринг под въздеиствието на React концепцията за реактивно програмиране. А когато се използва
+                        с Mapbox GL, той автоматично се координира с
+                        системата на камерата на Mapbox библютеката, за да осигури завладяващи 2D и 3D визуализации
+                        върху картите,
+                        базирани на Mapbox.
+                    </p>
+                    <h4>
+                        <a id="usage" href="#usage">#</a>
+                        Използване
+                    </h4>
+                    <hr>
+                    <p>
+                        <h5>Самостоятелно използване</h5>
+                        <p>
+                            Основната библиотека и слоевете на deck.gl нямат зависимост от React или Mapbox GL и могат
+                            да бъдат използвано от всяко JavaScript приложение.
+                        </p>
+                        <p>
+                            @deck.gl/core е подмодул на deck.gl и не съдържа никакви React или Mapbox GL зависимости.
+                        </p>
+                        <p>
+                            Примерът по-долу илюстрира съзвадаването на deck.gl визуализация, чрез използването
+                            на базовият @deck.gl/core подмодул.
+                        </p>
+                        <p>
+                            <div class="row">
+                                <div class="col-lg-8">
+
+                                    <pre style='color:#000020;background:#f6f8ff;'><span style='color:#200080; font-weight:bold; '>return</span> <span style='color:#200080; font-weight:bold; '>new</span> deck<span style='color:#308080; '>.</span>DeckGL<span style='color:#308080; '>(</span><span style='color:#406080; '>{</span>
+    container<span style='color:#406080; '>:</span> elmId<span style='color:#308080; '>,</span>
+    longitude<span style='color:#406080; '>:</span> <span style='color:#308080; '>-</span><span style='color:#008000; '>122.45</span><span style='color:#308080; '>,</span>
+    latitude<span style='color:#406080; '>:</span> <span style='color:#008000; '>37.8</span><span style='color:#308080; '>,</span>
+    zoom<span style='color:#406080; '>:</span> <span style='color:#008c00; '>12</span><span style='color:#308080; '>,</span>
+    layers<span style='color:#406080; '>:</span> <span style='color:#308080; '>[</span>
+        <span style='color:#200080; font-weight:bold; '>new</span> deck<span style='color:#308080; '>.</span>TextLayer<span style='color:#308080; '>(</span><span style='color:#406080; '>{</span>
+            data<span style='color:#406080; '>:</span> <span style='color:#308080; '>[</span>
+                <span style='color:#406080; '>{</span> position<span style='color:#406080; '>:</span> <span style='color:#308080; '>[</span><span style='color:#308080; '>-</span><span style='color:#008000; '>122.45</span><span style='color:#308080; '>,</span> <span style='color:#008000; '>37.8</span><span style='color:#308080; '>]</span><span style='color:#308080; '>,</span> text<span style='color:#406080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#1060b6; '>Hello World</span><span style='color:#800000; '>'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                <span style='color:#406080; '>{</span> position<span style='color:#406080; '>:</span> <span style='color:#308080; '>[</span><span style='color:#308080; '>-</span><span style='color:#008000; '>122.45</span><span style='color:#308080; '>,</span> <span style='color:#008000; '>37.796</span><span style='color:#308080; '>]</span><span style='color:#308080; '>,</span> text<span style='color:#406080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#1060b6; '>Drag me :)</span><span style='color:#800000; '>'</span> <span style='color:#406080; '>}</span>
+            <span style='color:#308080; '>]</span>
+        <span style='color:#406080; '>}</span><span style='color:#308080; '>)</span>
+    <span style='color:#308080; '>]</span>
+<span style='color:#406080; '>}</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+</pre>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div id="hello-world" style="height:400px;"></div>
+                                </div>
+                            </div>
+                        </p>
+                    </p>
+                    <p>
+                        deck.gl предлага и самостоятелна версия на библиотеката - JavaScript скриптов интерфейс
+                        като този на d3.js. Това позволява използването на deck.gl в прототипни среди като Codepen,
+                        JSFiddle
+                        и Observable. Това усилие цели да улесни дизайнерите, творческите програмисти и специалистите по
+                        данни навсякъде да използват WebGL за интерактивни визуализации.
+                    </p>
+                    <p>
+                        За да използвате deck.gl в скриптова среда, добавете самостоятелната версия, като използвате
+                        следните script tags:
+                    </p>
+                    <p>
+                        <!-- HTML generated using hilite.me -->
+                        <div
+                            style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                            <pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;https://unpkg.com/deck.gl@latest/dist.min.js&quot;</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+<span style="color: #888888">&lt;!-- optional if mapbox base map is needed --&gt;</span>
+<span style="color: #007700">&lt;script </span><span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&#39;https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js&#39;</span><span style="color: #007700">&gt;&lt;/script&gt;</span>
+<span style="color: #007700">&lt;link</span> <span style="color: #0000CC">href=</span><span style="background-color: #fff0f0">&#39;https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css&#39;</span> <span style="color: #0000CC">rel=</span><span style="background-color: #fff0f0">&#39;stylesheet&#39;</span> <span style="color: #007700">/&gt;</span>
+</pre>
+                        </div>
+
+                    </p>
+                    <p>
+                        <h5>React</h5>
+                        <p>
+                            Въпреки че не е базиран директно на React, deck.gl е проектиран из основи да работа с
+                            приложения, базирани на React. deck.gl слоевете се вписват естествено при използването oт
+                            приложения базирани на
+                            React библютеки за менежиране на състоянието - flux/redux. deck.gl слоевете ще бъдат
+                            изпълнени отново, когато рендерирате нормалните си JSX или React компоненти.
+                        </p>
+                    </p>
+                    <h4>
+                        <a id="performance" href="#performance">#</a>
+                        Производителност
+                    </h4>
+                    <hr>
+                    <p>
+                        На 2015г. MacBook Pro с dual graphics cards, повечето основни слоеве (като ScatterplotLayer)
+                        осигуряват 60 FPS (кадъра в секунда) по време на панорама и мащабиране до около 1M (един милион)
+                        елемента от данни. Кадрите намаляват до около (10-20FPS) кадъра в секунда, когато наборите от
+                        данни доближават колеции от порядъка на обхващат 10 милиона записа.
+                    </p>
+                    <p>
+                        Дори ако интерактивността не е проблем, ограниченията на браузъра върху това колко големи могат
+                        да бъдат отделните задалени ресурси памети (например, отделните разпределения на Chrome за 1 GB)
+                        ще
+                        доведат до срив на повечето слоеве при генерирането на WebGL буфер някъде между 10M (милиона) и
+                        100M (милиона)
+                        елемента. Затова трабва да бъдат разделяни данните на парчета и да се използвате няколко слоя
+                        deck.gl, за да
+                        се заобиколи този лимит.
+                    </p>
+                    <p>
+                        Съвременните телефони (последните телефони на iPhone и по-високите Android телефони) са
+                        изненадващо способни по отношение на ефективността на рендирането, но са значително
+                        по-чувствителни към натиска на паметта от лаптопите, което води до рестартиране на браузъра или
+                        презареждане на страници. Те също така са склонни да зареждат данни значително по-бавно от
+                        настолните компютри, така че някои настройки обикновено са необходими, за да се осигури добро
+                        цялостно потребителско изживяване на мобилните устройства.
+                    </p>
+                    <h4>
+                        <a id="examples" href="#examples">#</a>
+                        Примери
+                    </h4>
+                    <hr>
+                    <p>
+                        <h5>Използване на Hexagon Layer (Хексагон слой)</h5>
+                        <p>
+                            <div style="height: 300px" id="hexagon-example"></div>
+                        </p>
+                    </p>
+                    <p>
+                        <h5>Използване на Viewport Transition (преминаване към изглед)</h5>
+                        <p>
+                            <div id="control-panel"></div>
+                            <div id="transition-example" style="height: 300px"></div>
+                        </p>
+                    </p>
+                    <h4>
+                        <a id="references" href="#references">#</a>
+                        Източници
+                    </h4>
+                    <hr>
+                    <p>
+                        <div><a href="http://deck.gl/">http://deck.gl</a></div>
+                        <div><a href="https://github.com/uber/deck.gl">https://github.com/uber/deck.gl</a></div>
+                        <div><a href="http://deck.gl/showcases/gallery/">http://deck.gl/showcases/gallery/</a></div>
+                        <div>
+                            <a href="https://github.com/uber/deck.gl/blob/master/docs/developer-guide/performance.md">https://github.com/uber/deck.gl/blob/master/docs/developer-guide/performance.md
+                            </a>
+                        </div>
+                    </p>
+                </div>
             </div>
-            <div class="main-content">
-                Main content
-            </div>
-        </div>
     </main>
 
 
     <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="./main.js"></script>
     <script>
         const deckgl1 = app.renderBasicMapExample("basic-map");
-        // const deckgl2 = app.renderHelloWorldExample("someid");
+        const deckgl2 = app.renderHelloWorldExample("hello-world");
+        const deckgl3 = app.renderHexagonLayerExample("hexagon-example");
+        const deckgl4 = app.renderTransitionExample("control-panel", "transition-example");
+    </script>
+    <script>
     </script>
 </body>
 

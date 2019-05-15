@@ -31,9 +31,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+/* ol, ul {
 	list-style: none;
-}
+} */
 blockquote, q {
 	quotes: none;
 }
@@ -57,13 +57,12 @@ table {
 }
 
 .main-content {
-    height: 150vh;
     flex-grow: 1;
 }
 
 .sidebar {
-    border-right: 1px solid silver;
-    width: 25%;
+	width: 25%;
+	min-width: 200px;
     height: 25vh;
     position: -webkit-sticky;
     position: sticky;
